@@ -1,27 +1,29 @@
-# Audio_classifier_cnn
+# Audio_classifier_cnn  
+A 1D CNN model for classifying human non-speech audio into 7 categories: breath, cough, crying, laugh, screaming, sneeze, and yawn. The model processes MFCC features extracted from audio files.
 
-This personal project of mine is to practice classifying human non-speech audio using a 1D CNN. The model processes MFCC features extracted from each audio file and classifies them into categories like breath, cough, laugh, and more. 
+## Model Performance  
+- **Validation accuracy**: 79.57%  
+- **Test accuracy**: 64.55%  
 
+The model performs reliably on distinct classes like **breath** and **laugh**, but shows confusion between:  
+- **Crying** ↔ cough/laugh/screaming  
+- **Sneeze** ↔ breath/crying  
+- **Yawn** ↔ breath  
 
-Model performance so far:
+These challenges likely stem from overlapping acoustic features and class imbalance in training data.
 
+## Dataset  
+[Nonspeech7k dataset](https://zenodo.org/records/6967442) (Rashid et al., 2023)  
+- 7,014 labeled 32 kHz mono .wav files  
+- 7 non-speech classes  
 
-Validation set accuracy: 79.57%
+## Related Research  
+The original authors achieved:  
+- **79% test accuracy** using a 12-layer CNN on raw waveforms ([Classification and analysis of human non-speech sounds](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/sil2.12233))  
+- **~65–70% accuracy** with baseline MFCC+CNN architectures  
 
+This project recreates their MFCC baseline approach with comparable results, demonstrating the viability of simpler models for this task. Future work will explore deeper architectures and raw waveform processing.
 
-Test set accuracy: 64.55%
-
-
-The model performs well on distinct classes like breath and laugh but struggles with crying with cough, laugh, and screaming. Sneeze and yawn are also challenging, likely due to fewer samples and overlapping sound patterns.
-
-
-
-## Dataset
-I got the dataset from: [Nonspeech7k dataset](https://zenodo.org/records/6967442) (Rashid et al., 2023), containing 7,014 strongly labeled 32 kHz mono .wav files across 7 classes, which is used for this project.
-
-The original authors [Classification and analysis of human non-speech sounds](https://ietresearch.onlinelibrary.wiley.com/doi/am-pdf/10.1049/sil2.12233) achieved:
-
-79% accuracy with a 12-layer CNN on raw waveforms (M12 model)
 
 
 ~65–70% accuracy with baseline MFCC+CNN models
